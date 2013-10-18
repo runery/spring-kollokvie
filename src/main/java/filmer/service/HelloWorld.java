@@ -10,5 +10,6 @@ package filmer.service;
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hei Verden!");
+        System.out.println("Hei igjen");
     }
 }
