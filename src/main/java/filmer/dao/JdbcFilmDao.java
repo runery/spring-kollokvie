@@ -6,13 +6,6 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rry
- * Date: 31.10.13
- * Time: 15:26
- * To change this template use File | Settings | File Templates.
- */
 public class JdbcFilmDao implements FilmDao, InitializingBean {
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;

@@ -10,7 +10,7 @@
 
     <properties>
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
-        <spring.framework.version>3.1.0.RELEASE</spring.framework.version>
+        <spring.framework.version>3.0.6.RELEASE</spring.framework.version>
     </properties>
     <profiles>
         <profile>
@@ -64,6 +64,13 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jtds</groupId>
+            <artifactId>jtds</artifactId>
+            <type>jar</type>
+            <version>1.2.4-SPK-1.0.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -47,9 +47,25 @@ INSERT INTO members VALUES (2,'Janet Smith Jones','Female','1980-06-23','Melrose
 INSERT INTO members VALUES (3,'Robert Phil','Male','1989-07-12','3rd Street 34',NULL,'12345','rm@tstreet.com');
 INSERT INTO members VALUES (4,'Gloria Williams','Female','1984-02-14','2nd Street 23',NULL,NULL,NULL);
 
-CREATE TABLE payments (
-  payment_id int primary key,
+CREATE TABLE movierentals (
+  reference_number int NOT NULL AUTO_INCREMENT,
+  transaction_date date  NULL,
+  return_date date  NULL,
   membership_number int references members(membership_number),
+  movie_id int references movies(movie_id),
+  movie_returned int DEFAULT '0',
+  primary key (reference_number)
+);
+
+INSERT INTO movierentals VALUES (1,'2012-06-20',NULL,1,1,0);
+INSERT INTO movierentals VALUES (2,'2012-06-22','2012-06-25',1,2,0);
+INSERT INTO movierentals VALUES (3,'2012-06-22','2012-06-25',3,2,0);
+INSERT INTO movierentals VALUES (4,'2012-06-21','2012-06-24',2,2,0);
+INSERT INTO movierentals VALUES (5,'2012-06-23',NULL,3,3,0);
+
+CREATE TABLE payments (
+  payment_id int NOT NULL AUTO_INCREMENT primary key,
+  reference_number int references movierentals(reference_number),
   payment_date date NULL,
   description varchar(75) NULL,
   amount_paid float NULL,
@@ -57,20 +73,6 @@ CREATE TABLE payments (
 );
 
 INSERT INTO payments VALUES (1,1,'2012-07-23','Movie rental payment',2500,11);
-INSERT INTO payments VALUES (2,1,'2012-07-25','Movie rental payment',2000,12);
+INSERT INTO payments VALUES (2,2,'2012-07-25','Movie rental payment',2000,12);
 INSERT INTO payments VALUES (3,3,'2012-07-30','Movie rental payment',6000,NULL);
 
-CREATE TABLE movierentals (
-  reference_number int primary key,
-  transaction_date date  NULL,
-  return_date date  NULL,
-  membership_number int references members(membership_number),
-  movie_id int references movies(movie_id),
-  movie_returned int DEFAULT '0'
-);
-
-INSERT INTO movierentals VALUES (11,'2012-06-20',NULL,1,1,0);
-INSERT INTO movierentals VALUES (12,'2012-06-22','2012-06-25',1,2,0);
-INSERT INTO movierentals VALUES (13,'2012-06-22','2012-06-25',3,2,0);
-INSERT INTO movierentals VALUES (14,'2012-06-21','2012-06-24',2,2,0);
-INSERT INTO movierentals VALUES (15,'2012-06-23',NULL,3,3,0);
