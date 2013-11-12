@@ -35,6 +35,7 @@ local.properties
 .idea/
 *.iml
 *.iws
+target/
 
 #################
 ## Visual Studio
