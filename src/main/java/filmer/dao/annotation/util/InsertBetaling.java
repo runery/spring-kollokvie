@@ -1,4 +1,4 @@
-package filmer.dao.annotation;
+package filmer.dao.annotation.util;
 
 import java.sql.Types;
 

@@ -8,9 +8,16 @@
         http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
 
 
-    <jdbc:embedded-database id="dataSource" type="H2">
+    <!--<jdbc:embedded-database id="dataSource" type="H2">
         <jdbc:script location="classpath:movies_mod.sql"/>
-    </jdbc:embedded-database>
+    </jdbc:embedded-database>-->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
+        <property name="url" value="jdbc:jtds:sybase://syb03t:4100/testrry"/>
+        <property name="username" value="topp"/>
+        <property name="password" value="Templet"/>
+    </bean>
 
     <bean id="filmDao" class="filmer.dao.JdbcFilmDao">
         <property name="dataSource">
