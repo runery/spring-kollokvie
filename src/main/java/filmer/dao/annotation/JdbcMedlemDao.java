@@ -53,4 +53,6 @@ public class JdbcMedlemDao implements MedlemDao {
 
         return jdbcTemplate.query(sql, new MedlemMapper());
     }
+
+    //TODO: Lage en insert medlem metode som kun brukerjdbctemplate
 }

@@ -2,11 +2,12 @@ package filmer.dao;
 
 import javax.sql.DataSource;
 
+import filmer.dao.annotation.FilmDao;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class JdbcFilmDao implements FilmDao, InitializingBean {
+public class JdbcXmlFilmDao implements FilmDao, InitializingBean {
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
 
@@ -26,5 +27,10 @@ public class JdbcFilmDao implements FilmDao, InitializingBean {
     public String finnFilmVedId(Long id) {
         String filmNavn = jdbcTemplate.queryForObject("select title from movies where movie_id = ?", new Object[]{id}, String.class);
         return filmNavn;
+    }
+
+    @Override
+    public int finnFilmvedNavn(String navn) {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

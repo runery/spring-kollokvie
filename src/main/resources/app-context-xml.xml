@@ -15,11 +15,11 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
         <property name="url" value="jdbc:jtds:sybase://syb03t:4100/testrry"/>
-        <property name="username" value="topp"/>
-        <property name="password" value="Templet"/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
     </bean>
 
-    <bean id="filmDao" class="filmer.dao.JdbcFilmDao">
+    <bean id="filmDao" class="filmer.dao.JdbcXmlFilmDao">
         <property name="dataSource">
             <ref local="dataSource"/>
         </property>

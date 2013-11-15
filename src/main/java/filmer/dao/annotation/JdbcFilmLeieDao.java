@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import filmer.dao.annotation.util.InsertFilmLeie;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -19,11 +20,13 @@ public class JdbcFilmLeieDao implements FilmLeieDao {
     private InsertFilmLeie insertFilmLeie;
     private DataSource dataSource;
     private Log log = LogFactory.getLog(JdbcFilmLeieDao.class);
+    private JdbcTemplate jdbcTemplate;
 
     @Resource(name="dataSource")
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         insertFilmLeie = new InsertFilmLeie(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
     @Override
     public int registrerLeie(int medlemid, int filmid) {
@@ -37,5 +40,11 @@ public class JdbcFilmLeieDao implements FilmLeieDao {
         insertFilmLeie.updateByNamedParam(paramMap, keyHolder);
         log.info("Filmleie registrert med id" + keyHolder.getKey().intValue());
         return keyHolder.getKey().intValue();
+    }
+
+    @Override
+    public int finnAntallRaderILeie() {
+        String sql = "select count(*) from movierentals";
+        return jdbcTemplate.queryForInt(sql);
     }
 }

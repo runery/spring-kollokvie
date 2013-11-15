@@ -17,6 +17,10 @@ public class UseCaseTest {
     private BetalingDao betalingDao;
     @Autowired
     private FilmLeieDao filmLeieDao;
+    @Autowired
+    private FilmDao filmDao;
+    @Autowired
+    private MedlemDao medlemDao;
 
     @Test
     public void testLeiFilmOgTaBetalt() throws Exception {
@@ -27,6 +31,23 @@ public class UseCaseTest {
         boolean kjoepOk = false;
         leieId = filmLeieDao.registrerLeie(1,2);
         kjoepOk = betalingDao.registrerBetaling(40,leieId);
+        assertTrue(kjoepOk);
+    }
+
+    @Test
+    public void testFinnFilmMedIdOgMedlemMedNavnLeiFilmOgTaBetalt() {
+        //Finn id til medlem med navn Robert Phil
+        int medlemid = medlemDao.finnIdVedNavn("Robert Phil");
+        //Finn film som han vil leie, X-Men
+        int filmid = filmDao.finnFilmvedNavn("X-Men");
+        //Lei filmen
+        int raderFoerLeie = filmLeieDao.finnAntallRaderILeie();
+        int leieid = filmLeieDao.registrerLeie(medlemid, filmid);
+        int raderEtterLeie = filmLeieDao.finnAntallRaderILeie();
+        System.out.println("Rader foer: " + raderFoerLeie + ". Rader etter: " + raderEtterLeie + ".");
+        assertTrue(raderFoerLeie < raderEtterLeie);
+        //Ta betalt
+        boolean kjoepOk = betalingDao.registrerBetaling(40, leieid);
         assertTrue(kjoepOk);
     }
 }

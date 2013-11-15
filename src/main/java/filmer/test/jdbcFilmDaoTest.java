@@ -1,6 +1,6 @@
 package filmer.test;
 
-import filmer.dao.FilmDao;
+import filmer.dao.annotation.FilmDao;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class jdbcFilmDaoTest {
